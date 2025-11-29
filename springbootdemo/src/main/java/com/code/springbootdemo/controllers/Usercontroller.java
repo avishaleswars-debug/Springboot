@@ -13,11 +13,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/hello")
 public class Usercontroller {
-//@GetMapping
-//public String getuser() {
-//	return "hello";
-//}
-	@GetMapping
+@GetMapping
+public String get() {
+	return "hello";
+}
+	@GetMapping("/user")
 	public List<User> getuser() {
 	return Arrays.asList(new User(1L,"ajay","ajay@gmail.com"),new User(2L,"vishal","vishal@gmail.com"));
 	}
