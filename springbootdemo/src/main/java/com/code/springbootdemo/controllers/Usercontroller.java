@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,6 +53,13 @@ return repo.save(user);
 	    userdata.setName(user.getName());
 
 	    return ResponseEntity.ok(repo.save(userdata));
+	}
+	@DeleteMapping("{id}")
+	public ResponseEntity<?> deleteuser(@PathVariable Long id) {
+		UserEntity user=repo.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+		repo.delete(user);
+		return ResponseEntity.ok().build();
+		
 	}
 }
 
